@@ -18,7 +18,7 @@ const DELETE = "word/DELETE";
 
 
 const initialState = {
-  is_loaed: false,
+  
   list: [],
 };
 
@@ -60,6 +60,7 @@ export const loadWordFB = () => {
     //console.log(word_list);
 
     dispatch(loadWord(word_list));
+    
   };
 };
 

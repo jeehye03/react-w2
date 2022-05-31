@@ -5,63 +5,159 @@ import styled from "styled-components";
 
 const Edit = (props) => {
   const params = useParams();
-  const word_index = params.index;
-  const word_list = useSelector((state) => state.word.list);
 
-  // console.log(word_list)
-  // console.log(params)
-  console.log(word_list[word_index]);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const word_index=[params.index]
+ const word_list = useSelector((state) => state.word.list);
+ 
+  console.log(word_list[word_index])
+  const input_word = React.useRef();
+  const input_pinyin = React.useRef();
+  const input_mean = React.useRef();
+  const input_example = React.useRef();
+  const input_read = React.useRef();
 
+
+  const [input, setInput] = React.useState({
+    word: input_word,
+    pinyin: input_pinyin,
+    mean: input_mean,
+    example: input_example,
+    read: input_read
+  });
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+  
+  
+
+  
   return (
-    <Wrap>
-      <Article>
-        <h4>{word_list[word_index].word}</h4>
-        <span>{word_list[word_index].mean}</span>
-        <p>{word_list[word_index].pinyin}</p>
-        <Blue>{word_list[word_index].example}</Blue>
-        <Blue>{word_list[word_index].read}</Blue>
-      </Article>
-    </Wrap>
+    <AddCard>
+      <div>
+        <label>
+          단어
+          <input
+            type="text"
+            name="word"
+            ref={input_word}
+            value={input.word}
+            onChange={onChange}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          병음
+          <input
+            type="text"
+            name="pinyin"
+            ref={input_pinyin}
+            value={input.pinyin}
+            onChange={onChange}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          뜻
+          <input
+            type="text"
+            name="mean"
+            ref={input_mean}
+            value={input.mean}
+            onChange={onChange}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          예문
+          <input
+            type="text"
+            name="example"
+            ref={input_example}
+            value={input.example}
+            onChange={onChange}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          해석
+          <input
+            type="text"
+            name="read"
+            ref={input_read}
+            value={input.read}
+            onChange={onChange}
+          />
+        </label>
+      </div>
+
+      <button>등록하기</button>
+    </AddCard>
   );
 };
 
-const Wrap = styled.div`
-  display: flex;
-  padding: 20px 40px;
-  justify-content: center;
-`;
-const Article = styled.div`
-  width: 500px;
-  height: 320px;
-  background-color: ${(props) => (props.completed ? "#E6E6FA" : "aliceblue")};
-  border: 1px solid #ddd;
-  border-radius: 25px;
+const AddCard = styled.div`
+  margin: auto;
+  width: 350px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  padding: 10px 20px;
-  margin: 5px 5px;
-  line-height: 30px;
+  align-items: center;
 
-  & h4 {
-    margin: 20px 0;
-    font-size: 45px;
-    line-height: 15px;
-  }
-  & span {
-    font-size: 25px;
-  }
-
-  & p {
-    margin: 8px 0;
-    font-size: 25px;
-  }
-`;
-
-const Blue = styled.div`
-  color: #6586fa;
+  font-family: "GangwonEduSaeeum_OTFMediumA";
   font-size: 25px;
-  margin-bottom: 5px;
+
+  & div {
+    width: 400px;
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  & label {
+    margin-bottom: 5px;
+    width: 400px;
+    text-align: start;
+  }
+  & input {
+    font-size: 16px;
+    width: 400px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    padding: 5px 0;
+  }
+
+  & input:focus {
+    outline: none;
+    border-bottom: 2px solid #dadafc;
+    transition: border-color 0.4s ease-in-out;
+  }
+
+  & button {
+    border: none;
+    border-radius: 7px;
+    background-color: aliceblue;
+    width: 200px;
+    height: 40px;
+    font-family: "GangwonEduSaeeum_OTFMediumA";
+    font-size: 25px;
+    padding: 1px 6px;
+    cursor: pointer;
+  }
 `;
+
+
 export default Edit;
