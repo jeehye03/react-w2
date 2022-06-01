@@ -13,47 +13,49 @@ const Main = () => {
   const word_list = useSelector((state) => state.word.list);
 
   return (
-    <Card>
-      <Wrap>
-        {word_list.map((l, index) => {
-          return (
-            <Article completed={l.completed} key={l.id}>
-              <Title>
-                <h4>{l.word}</h4>
-                <Icon>
-                  <BiCheck
-                    size="25"
-                    id={l.id}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      dispatch(checkWordFB(l.id));
-                    }}
-                  />
-                  <BiEdit
-                    size="20"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      history.push("/edit/" + index);
-                    }}
-                  />
-                  <BiCut
-                    size="20"
-                    id={l.id}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      dispatch(deleteWordFB(l.id));
-                    }}
-                  />
-                </Icon>
-              </Title>
-              <span>{l.pinyin}</span>
-              <p>{l.mean}</p>
-              <Blue>{l.example}</Blue>
-              <Blue>{l.read}</Blue>
-            </Article>
-          );
-        })}
-      </Wrap>
+    <div>
+      <Card>
+        <Wrap>
+          {word_list.map((l, index) => {
+            return (
+              <Article completed={l.completed} key={l.id}>
+                <Title>
+                  <h4>{l.word}</h4>
+                  <Icon>
+                    <BiCheck
+                      size="25"
+                      id={l.id}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        dispatch(checkWordFB(l.id));
+                      }}
+                    />
+                    <BiEdit
+                      size="20"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        history.push("/edit/" + index);
+                      }}
+                    />
+                    <BiCut
+                      size="20"
+                      id={l.id}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        dispatch(deleteWordFB(l.id));
+                      }}
+                    />
+                  </Icon>
+                </Title>
+                <span>{l.pinyin}</span>
+                <p>{l.mean}</p>
+                <Blue>{l.example}</Blue>
+                <Blue>{l.read}</Blue>
+              </Article>
+            );
+          })}
+        </Wrap>
+      </Card>
       <AddBtn
         onClick={() => {
           history.push("/add");
@@ -61,38 +63,43 @@ const Main = () => {
       >
         <IoMdAdd size="50" color="white" />
       </AddBtn>
-    </Card>
+    </div>
   );
 };
 const Card = styled.div`
   position: relative;
   display: block;
-
+  margin: 10px 0;
 `;
 const Wrap = styled.div`
   display: flex;
   width: 1300px;
-  /* justify-content:space-evenly; */
   flex-flow: wrap;
   box-sizing: border-box;
+  display: flex;
+  gap: 20px;
+  margin: auto;
+ 
 `;
 
 const Article = styled.div`
-  width: 380px;
+  width: 360px;
   height: 180px;
-  background-color: ${(props) => (props.completed ? "#E6E6FA" : "aliceblue")};
+  background-color: ${(props) => (props.completed ? "#E6E6FA" : "white")};
   border: 1px solid #ddd;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
   padding: 5px 20px;
   margin: 5px 5px;
   line-height: 20px;
   cursor: pointer;
   transition: all 0.35s;
- 
+
+  /* @media screen and (min-width: 1024px) {
+    width: calc((100% - 199px) / 3);
+  } */
 
   &:hover {
     box-shadow: 2px 1px 5px #ddd;
