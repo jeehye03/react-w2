@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useDispatch } from "react-redux";
 import { BiCut, BiEdit, BiCheck } from "react-icons/bi";
+import { IoMdAdd } from "react-icons/io";
 import { loadWordFB, checkWordFB, deleteWordFB, } from "./redux/modules/word";
 
 
@@ -57,6 +58,13 @@ const Main = () => {
           );
         })}
       </Wrap>
+      <AddBtn
+        onClick={() => {
+          history.push("/add");
+        }}
+      >
+        <IoMdAdd size="50" color="white" />
+      </AddBtn>
     </Card>
   );
 };
@@ -73,6 +81,9 @@ const Wrap = styled.div`
   box-sizing:border-box;
 
 `;
+
+
+
 const Article = styled.div`
   width: 350px;
   height: 180px;
@@ -88,9 +99,12 @@ const Article = styled.div`
   line-height: 20px;
   box-sizing: border-box;
   cursor: pointer;
-
+  transition: all 0.35s;
+  
   &:hover {
-    box-shadow: 5px 5px 5px #ddd;
+    box-shadow: 2px 1px 5px #ddd; 
+    transform: scale(1.1);
+   
   }
 
   & h4 {
@@ -123,6 +137,36 @@ const Blue = styled.div`
 `;
 const Icon = styled.div`
 
+`;
+
+const boxFade = keyframes`
+
+from{
+  transform:0
+}
+to{
+  transform:rotate(90deg)
+}
+`;
+
+
+const AddBtn = styled.div`
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-color: #e6e6fa;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 1px 5px #ddd;
+  position: fixed;
+bottom:50px;
+ right:30px;
+  
+
+  &:hover {
+    animation: ${boxFade} 1s ease-in-out forwards;
+  }
 `;
 
 

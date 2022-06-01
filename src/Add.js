@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createWord, createWordFB } from "./redux/modules/word";
+import { IoIosArrowRoundBack } from "react-icons/io";
+
 
 const Add = () => {
   const input_word = React.useRef(null);
@@ -29,43 +31,52 @@ const Add = () => {
   };
 
   return (
-    <AddCard>
-      <div>
-        <label>
-          단어
-          <input type="text" ref={input_word} />
-        </label>
-      </div>
+    <div>
+      <AddCard>
+        <div>
+          <label>
+            단어
+            <input type="text" ref={input_word} />
+          </label>
+        </div>
 
-      <div>
-        <label>
-          병음
-          <input type="text" ref={input_pinyin} />
-        </label>
-      </div>
+        <div>
+          <label>
+            병음
+            <input type="text" ref={input_pinyin} />
+          </label>
+        </div>
 
-      <div>
-        <label>
-          뜻
-          <input type="text" ref={input_mean} />
-        </label>
-      </div>
-      <div>
-        <label>
-          예문
-          <input type="text" ref={input_example} />
-        </label>
-      </div>
+        <div>
+          <label>
+            뜻
+            <input type="text" ref={input_mean} />
+          </label>
+        </div>
+        <div>
+          <label>
+            예문
+            <input type="text" ref={input_example} />
+          </label>
+        </div>
 
-      <div>
-        <label>
-          해석
-          <input type="text" ref={input_read} />
-        </label>
-      </div>
+        <div>
+          <label>
+            해석
+            <input type="text" ref={input_read} />
+          </label>
+        </div>
 
-      <button onClick={addWordList}>등록하기</button>
-    </AddCard>
+        <button onClick={addWordList}>등록하기</button>
+      </AddCard>
+      <AddBtn
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        <IoIosArrowRoundBack size="50" color="white" />
+      </AddBtn>
+    </div>
   );
 };
 
@@ -117,6 +128,20 @@ const AddCard = styled.div`
     padding: 1px 6px;
     cursor: pointer;
   }
+`;
+
+const AddBtn = styled.div`
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-color: #e6e6fa;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 1px 5px #ddd;
+  position: absolute;
+  right: 50px;
+  top: 50px;
 `;
 
 export default Add;

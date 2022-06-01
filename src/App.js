@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { loadWordFB } from "./redux/modules/word";
 import { useHistory } from "react-router-dom";
-import { IoMdAdd } from "react-icons/io";
+
 import Main from "./Main";
 import Add from "./Add";
 import Edit from "./Edit";
@@ -30,13 +30,7 @@ React.useEffect(() => {
       </Route>
       <Route exact path="/edit/:index" component={Edit} />
       <Route exact path="/add" component={Add} />
-      <AddBtn
-        onClick={() => {
-          history.push("/add");
-        }}
-      >
-        <IoMdAdd size="50" color="white" />
-      </AddBtn>
+      
     </div>
   );
 }
@@ -49,18 +43,6 @@ const Title = styled.div`
   font-size:30px;
 `;
 
-const AddBtn = styled.div`
-  border: none;
-  width: 50px;
-  height: 50px;
-  background-color: #E6E6FA;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  cursor: pointer;
-  position: absolute;
-  right: 50px;
-  bottom:50px;
-  
-  `
+
 export default App;
 
