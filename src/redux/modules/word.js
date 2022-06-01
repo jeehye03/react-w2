@@ -65,6 +65,7 @@ export const loadWordFB = () => {
 };
 
 export const createWordFB = (word) => {
+ 
   return async function (dispatch) {
     
     const docRef = await addDoc(collection(db, "word"), word);
@@ -79,17 +80,18 @@ export const createWordFB = (word) => {
   };
 };
 
-export const checkWordFB = (word_id) => {
+export const checkWordFB = (word_id, word) => {
+  console.log(word,word_id)
   return async function (dispatch, getState) {
     const docRef = doc(db, "word", word_id);
-    await updateDoc(docRef, { completed: true });
+    await updateDoc(docRef, { completed: !word.completed });
     const _word_list = getState().word.list;
     const word_index = _word_list.findIndex((w) => {
       return w.id === word_id;
     }) 
     dispatch(checkWord(word_index));
   };
-  
+ 
 };
 
 
@@ -100,6 +102,7 @@ export const deleteWordFB = (word_id) => {
       return;
     }
     const docRef = doc(db, "word", word_id);
+    
     await deleteDoc(docRef);
 
     const _word_list = getState().word.list;
@@ -125,11 +128,11 @@ export default function reducer(state = initialState, action = {}) {
     case "word/CHECK": {
       const new_word_list = state.list.map((l, idx) => {
         if (parseInt(action.word_index) === idx) {
-          return { ...l, completed: true };
+          return { ...l, completed: !l.completed };
         } else {
           return l;
         }
-      }); console.log(action)
+      }); 
       return { list: new_word_list };
     }
 

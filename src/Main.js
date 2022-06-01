@@ -27,7 +27,7 @@ const Main = () => {
                       id={l.id}
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        dispatch(checkWordFB(l.id));
+                        dispatch(checkWordFB(l.id,l));
                       }}
                     />
                     <BiEdit
@@ -85,7 +85,7 @@ const Wrap = styled.div`
 const Article = styled.div`
   width: 360px;
   height: 180px;
-  background-color: ${(props) => (props.completed ? "#E6E6FA" : "white")};
+  background-color: ${(props) => (props.completed ? "#E6E6FA" : "")};
   border: 1px solid #ddd;
   border-radius: 25px;
   display: flex;
@@ -157,7 +157,7 @@ const AddBtn = styled.div`
   right: 30px;
 
   &:hover {
-    animation: ${boxFade} 1s ease-in-out forwards;
+    animation: ${boxFade} 1s ease-in-out ;
   }
 `;
 
