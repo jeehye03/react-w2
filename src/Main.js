@@ -5,16 +5,12 @@ import styled, { keyframes } from "styled-components";
 import { useDispatch } from "react-redux";
 import { BiCut, BiEdit, BiCheck } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
-import { loadWordFB, checkWordFB, deleteWordFB, } from "./redux/modules/word";
-
+import { loadWordFB, checkWordFB, deleteWordFB } from "./redux/modules/word";
 
 const Main = () => {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const word_list = useSelector((state) => state.word.list);
- 
-
 
   return (
     <Card>
@@ -69,23 +65,20 @@ const Main = () => {
   );
 };
 const Card = styled.div`
-height: 100%;
-position:relative;
+  position: relative;
+  display: block;
+
 `;
 const Wrap = styled.div`
   display: flex;
+  width: 1300px;
   /* justify-content:space-evenly; */
-  width:100%;
-  padding: 20px 40px;
   flex-flow: wrap;
-  box-sizing:border-box;
-
+  box-sizing: border-box;
 `;
 
-
-
 const Article = styled.div`
-  width: 350px;
+  width: 380px;
   height: 180px;
   background-color: ${(props) => (props.completed ? "#E6E6FA" : "aliceblue")};
   border: 1px solid #ddd;
@@ -97,14 +90,13 @@ const Article = styled.div`
   padding: 5px 20px;
   margin: 5px 5px;
   line-height: 20px;
-  box-sizing: border-box;
   cursor: pointer;
   transition: all 0.35s;
-  
+ 
+
   &:hover {
-    box-shadow: 2px 1px 5px #ddd; 
+    box-shadow: 2px 1px 5px #ddd;
     transform: scale(1.1);
-   
   }
 
   & h4 {
@@ -121,23 +113,18 @@ const Article = styled.div`
   }
 `;
 
-
 const Title = styled.div`
-width:100%;
-display:flex;
-justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Blue = styled.div`
-
-    color: #6586fa;
-    font-size: 14px;
-    margin-bottom: 5px;
-
+  color: #6586fa;
+  font-size: 14px;
+  margin-bottom: 5px;
 `;
-const Icon = styled.div`
-
-`;
+const Icon = styled.div``;
 
 const boxFade = keyframes`
 
@@ -149,7 +136,6 @@ to{
 }
 `;
 
-
 const AddBtn = styled.div`
   border: none;
   width: 50px;
@@ -160,15 +146,12 @@ const AddBtn = styled.div`
   cursor: pointer;
   box-shadow: 2px 1px 5px #ddd;
   position: fixed;
-bottom:50px;
- right:30px;
-  
+  bottom: 50px;
+  right: 30px;
 
   &:hover {
     animation: ${boxFade} 1s ease-in-out forwards;
   }
 `;
-
-
 
 export default Main;
